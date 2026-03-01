@@ -8,6 +8,14 @@ Lightweight evaluation pipeline for **monitoring, auditing** and **explaining** 
 
 ---
 
+## For whom
+
+For AI teams in fintech, government and enterprise building multi-agent systems 
+who need **deterministic audit**, full traceability and compliance with 
+EU AI Act / ФСТЭК requirements.
+
+---
+
 ## Motivation
 
 In 2026, multi-agent LLM systems are deployed in fintech, government, 
@@ -19,6 +27,10 @@ prompt quality & consistency assessment, full traceability.
 
 Goal: align systems with EU AI Act, ISO standards, and high explainability 
 levels — enabling humans to truly trust and control autonomous agents.
+
+**Example:** detect when an agent silently ignores a KYC rule, 
+loops on a decision chain, or produces hallucinated reasoning 
+in a critical workflow.
 
 ---
 
