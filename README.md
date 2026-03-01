@@ -102,6 +102,18 @@ jupyter notebook notebooks/demo.ipynb
 Active research project. Core architecture is under IP protection.  
 This repository contains the public demo layer.
 
+---
+
+## Related Concepts
+
+This work draws from:
+- [DeepEval](https://github.com/confident-ai/deepeval) — LLM evaluation framework
+- Agent observability patterns (Langfuse, Phoenix, OpenTelemetry)
+- AI Safety research on monitoring, alignment and explainability
+- EU AI Act requirements for transparent and auditable AI systems
+
+---
+  
 ## Contact
 
 Issues welcome → [github.com/DariRinch](https://github.com/DariRinch)
