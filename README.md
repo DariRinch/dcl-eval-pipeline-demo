@@ -1,41 +1,89 @@
 # DCL Eval Pipeline — Demo
 
-A lightweight evaluation framework for monitoring and auditing 
-LLM agent behavior in multi-agent systems.
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
+[![DeepEval](https://img.shields.io/badge/eval-DeepEval-orange)](https://github.com/confident-ai/deepeval)
+[![Stars](https://img.shields.io/github/stars/DariRinch/dcl-eval-pipeline-demo?style=social)](https://github.com/DariRinch/dcl-eval-pipeline-demo)
 
-## What this is
+Lightweight evaluation pipeline for **monitoring, auditing** and **explaining** behavior of LLM agents in multi-agent systems.
 
-This demo implements a basic evaluation pipeline for LLM outputs:
-- prompt quality assessment
-- response consistency checks  
-- anomaly detection in agent decision chains
-- structured logging of agent actions
+---
 
-Built as a practical exploration of LLM observability and 
-audit infrastructure.
+## Motivation
 
-## Stack
+In 2026, multi-agent LLM systems are already deployed in fintech, government and enterprise — but their behavior remains a **black box**.
 
-- Python 3.10+
-- OpenAI API
-- DeepEval
-- Jupyter Notebook
-- pandas / matplotlib
+This pipeline is a practical step toward **deterministic audit**, observability and explainability of agents: from anomaly detection in decision chains to prompt quality assessment and response consistency.
 
-## Structure
+The goal: give humans the ability to trust and control autonomous agents.
 
-- [`eval/pipeline.py`](eval/pipeline.py) — core evaluation logic  
-- [`eval/metrics.py`](eval/metrics.py) — quality metrics  
-- [`prompts/templates.py`](prompts/templates.py) — prompt templates  
-- [`notebooks/demo.ipynb`](notebooks/demo.ipynb) — interactive demo  
+---
+
+## Key Features
+
+- **Prompt quality assessment** — clarity, completeness, ambiguity detection
+- **Response consistency** — contradiction detection across agent responses
+- **Anomaly detection** in decision chains — loops, hallucination in reasoning
+- **Structured agent logging** — JSON logs with action tracing and tool calls
+- **Extensible metrics** via DeepEval (G-Eval, custom LLM-as-a-judge)
+- **Interactive demo** in Jupyter — see the pipeline on sample logs
+
+---
+
+## Architecture
+```mermaid
+graph TD
+    A[Agent Logs JSON] --> B[Structured Parsing + Validation]
+    B --> C[Metrics Engine - DeepEval]
+    C --> D[Anomaly Detection and Scoring]
+    D --> E[Reports + Visualizations]
+```
+
+Core components:
+- [`eval/pipeline.py`](eval/pipeline.py) — evaluation orchestration
+- [`eval/metrics.py`](eval/metrics.py) — custom and built-in metrics
+- [`prompts/templates.py`](prompts/templates.py) — prompt templates for LLM evaluators
 - [`data/sample_logs.json`](data/sample_logs.json) — sample agent logs
 
-## Quick Start
+---
 
+## Installation
+```bash
+# 1. Clone
+git clone https://github.com/DariRinch/dcl-eval-pipeline-demo.git
+cd dcl-eval-pipeline-demo
+
+# 2. Install dependencies
 pip install -r requirements.txt
+
+# 3. Set up API key
+cp .env.example .env
+# → edit .env and add your OPENAI_API_KEY=sk-...
+```
+
+## Quick Start
+```bash
 jupyter notebook notebooks/demo.ipynb
+```
+
+---
+
+## Roadmap
+
+- [ ] LangGraph / CrewAI integration
+- [ ] Agent-specific metrics: goal achievement rate, loop detection
+- [ ] Multi-model support via LiteLLM
+- [ ] Streamlit dashboard
+- [ ] Export to Langfuse / OpenTelemetry
+- [ ] Golden datasets + regression tests
+- [ ] CLI for batch log evaluation
+
+---
 
 ## Status
 
-Work in progress. Part of ongoing research into 
-deterministic audit systems for AI agents.
+Active research project. Core architecture is under IP protection.  
+This repository contains the public demo layer.
+
+## Contact
+
+Issues welcome → [github.com/DariRinch](https://github.com/DariRinch)
