@@ -10,26 +10,15 @@ Lightweight evaluation pipeline for **monitoring, auditing** and **explaining** 
 
 ## Motivation
 
-In 2026, multi-agent LLM systems are already deployed in fintech, government and enterprise — but their behavior remains a **black box**.
+In 2026, multi-agent LLM systems are deployed in fintech, government, 
+and enterprise — but their decisions remain a **black box**.
 
-This pipeline is a practical step toward **deterministic audit**, observability and explainability of agents: from anomaly detection in decision chains to prompt quality assessment and response consistency.
+This pipeline is a practical step toward **deterministic audit**, 
+observability, and explainability: anomaly detection in decision chains, 
+prompt quality & consistency assessment, full traceability.
 
-The goal: give humans the ability to trust and control autonomous agents.
-
----
-
-## Why this project?
-
-In 2026, autonomous LLM agents are already operating in fintech, 
-government and enterprise — but their decisions remain opaque.
-
-This pipeline is a first step toward **deterministic audit** and 
-**meta-monitoring**: anomaly detection in decision chains, prompt 
-quality and consistency assessment, full traceability of agent actions.
-
-The goal: bring systems closer to EU AI Act requirements, ISO standards 
-and high levels of explainability — where humans can actually trust 
-and verify autonomous agents.
+Goal: align systems with EU AI Act, ISO standards, and high explainability 
+levels — enabling humans to truly trust and control autonomous agents.
 
 ---
 
