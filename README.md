@@ -84,11 +84,14 @@ jupyter notebook notebooks/demo.ipynb
 
 ## Roadmap
 
+- [x] Core eval pipeline + metrics
+- [x] Sample logs + .env setup
+- [x] Jupyter demo notebook structure
 - [ ] LangGraph / CrewAI integration
-- [ ] Agent-specific metrics: goal achievement rate, loop detection
-- [ ] Multi-model support via LiteLLM
-- [ ] Streamlit dashboard
-- [ ] Export to Langfuse / OpenTelemetry
+- [ ] Agent-specific metrics: goal achievement, loop/hallucination detection
+- [ ] Multi-LLM support via LiteLLM
+- [ ] Streamlit / Gradio dashboard
+- [ ] Export to Langfuse / Phoenix / OpenTelemetry
 - [ ] Golden datasets + regression tests
 - [ ] CLI for batch log evaluation
 
