@@ -24,11 +24,11 @@ audit infrastructure.
 
 ## Structure
 
-eval/pipeline.py      — core evaluation logic  
-eval/metrics.py       — quality metrics  
-prompts/templates.py  — prompt templates  
-notebooks/demo.ipynb  — interactive demo  
-data/sample_logs.json — sample agent logs  
+- [`eval/pipeline.py`](eval/pipeline.py) — core evaluation logic  
+- [`eval/metrics.py`](eval/metrics.py) — quality metrics  
+- [`prompts/templates.py`](prompts/templates.py) — prompt templates  
+- [`notebooks/demo.ipynb`](notebooks/demo.ipynb) — interactive demo  
+- [`data/sample_logs.json`](data/sample_logs.json) — sample agent logs
 
 ## Quick Start
 
