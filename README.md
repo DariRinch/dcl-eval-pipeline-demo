@@ -18,6 +18,21 @@ The goal: give humans the ability to trust and control autonomous agents.
 
 ---
 
+## Why this project?
+
+In 2026, autonomous LLM agents are already operating in fintech, 
+government and enterprise — but their decisions remain opaque.
+
+This pipeline is a first step toward **deterministic audit** and 
+**meta-monitoring**: anomaly detection in decision chains, prompt 
+quality and consistency assessment, full traceability of agent actions.
+
+The goal: bring systems closer to EU AI Act requirements, ISO standards 
+and high levels of explainability — where humans can actually trust 
+and verify autonomous agents.
+
+---
+
 ## Key Features
 
 - **Prompt quality assessment** — clarity, completeness, ambiguity detection
