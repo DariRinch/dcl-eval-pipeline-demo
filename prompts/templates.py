@@ -13,6 +13,11 @@ AGENT_EVAL_PROMPTS = {
         "prompt": "You are an AI agent monitoring system. Analyze this log entry and flag any anomalies: {log_entry}",
         "expected_keywords": ["normal", "anomaly", "detected", "flag"],
         "forbidden_patterns": ["ignore", "skip", "not important"]
+    },
+    "consistency_check": {
+        "prompt": "You are Agent {agent_id}. Evaluate this loan application and give a risk verdict: {application}. Answer with: verdict (HIGH/LOW risk), confidence (0-1), and 2-sentence reasoning.",
+        "expected_keywords": ["risk", "verdict", "confidence", "because"],
+        "forbidden_patterns": ["I cannot", "I refuse", "uncertain"]
     }
 }
 
