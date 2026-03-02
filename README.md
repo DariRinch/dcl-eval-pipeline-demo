@@ -47,16 +47,12 @@ in a critical workflow.
 ---
 
 ## Architecture
-```
-Agent Logs JSON
-      ↓
-Structured Parsing + Validation
-      ↓
-Metrics Engine (LiteLLM + custom metrics)
-      ↓
-Anomaly Detection + Multi-Agent Consistency
-      ↓
-REST API (FastAPI) / Audit Report JSON
+```mermaid
+graph TD
+    A[Agent Logs JSON] --> B[Structured Parsing + Validation]
+    B --> C[Metrics Engine - LiteLLM + custom metrics]
+    C --> D[Anomaly Detection + Multi-Agent Consistency]
+    D --> E[REST API FastAPI / Audit Report JSON]
 ```
 
 Core components:
