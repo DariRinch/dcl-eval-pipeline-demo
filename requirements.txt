@@ -1,3 +1,8 @@
 litellm
 fastapi
 uvicorn[standard]
+
+# observability/tracing dependencies
+arize-phoenix
+openinference-instrumentation-openai
+opentelemetry-exporter-otlp

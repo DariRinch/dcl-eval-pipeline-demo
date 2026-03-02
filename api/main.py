@@ -8,14 +8,16 @@ import sys
 import os
 
 # Phoenix tracing for OpenAI calls
-import phoenix as px
-from phoenix.trace.openai import OpenAIInstrumentor
+# import only when we plan to instrument to keep deps optional
+collector_endpoint = os.getenv("PHOENIX_COLLECTOR_ENDPOINT")
+if collector_endpoint:
+    try:
+        from phoenix.trace.openai import OpenAIInstrumentor
 
-# Если мы в докере, коннектимся к сервису phoenix
-collector_endpoint = os.getenv("PHOENIX_COLLECTOR_ENDPOINT", "http://localhost:4317")
-
-# Запускаем инструмент для автоматического логирования всех вызовов OpenAI
-OpenAIInstrumentor().instrument(endpoint=collector_endpoint)
+        OpenAIInstrumentor().instrument(endpoint=collector_endpoint)
+    except Exception as e:  # pylint: disable=broad-except
+        # logging is not initialized yet, simply print
+        print(f"warning: Phoenix instrumentation failed: {e}")
 
 sys.path.insert(0, os.path.abspath('..'))
 
