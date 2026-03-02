@@ -1,0 +1,27 @@
+# DCL Eval Pipeline — Configuration
+
+model:
+  provider: "huggingface"
+  name: "mistralai/Mistral-7B-Instruct-v0.3"
+  max_new_tokens: 512
+  temperature: 0.3
+
+metrics:
+  consistency:
+    threshold: 0.7
+  length:
+    min: 50
+    max: 1000
+  anomaly:
+    threshold: 0.0
+
+scoring:
+  aggregate_pass_threshold: 0.6
+  consistency_delta: 0.3
+
+paths:
+  logs: "data/sample_logs.json"
+
+audit:
+  target_audience: "fintech, government, enterprise"
+  compliance: ["EU AI Act", "ФСТЭК"]
