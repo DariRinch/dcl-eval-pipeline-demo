@@ -17,8 +17,8 @@ jobs:
       - name: Install ruff
         run: pip install ruff
       - name: Run ruff
-        run: ruff check . --exclude notebooks/
-ruff check . --exclude notebooks/ --ignore E402
+        run: ruff check . --exclude notebooks/ --ignore E402
+
   docker:
     runs-on: ubuntu-latest
     steps:
