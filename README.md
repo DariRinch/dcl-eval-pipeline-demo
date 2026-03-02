@@ -1,5 +1,6 @@
 # DCL Eval Pipeline — Demo
 
+[![CI](https://github.com/DariRinch/dcl-eval-pipeline-demo/actions/workflows/main.yml/badge.svg)](https://github.com/DariRinch/dcl-eval-pipeline-demo/actions/workflows/main.yml)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![DeepEval](https://img.shields.io/badge/eval-DeepEval-orange)](https://github.com/confident-ai/deepeval)
 [![Stars](https://img.shields.io/github/stars/DariRinch/dcl-eval-pipeline-demo?style=social)](https://github.com/DariRinch/dcl-eval-pipeline-demo)
