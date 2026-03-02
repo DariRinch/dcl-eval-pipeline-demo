@@ -2,7 +2,7 @@
 
 model:
   provider: "huggingface"
-  name: "mistralai/Mistral-7B-Instruct-v0.3"
+  name: "huggingface/mistralai/Mistral-7B-Instruct-v0.3"
   max_new_tokens: 512
   temperature: 0.3
 
