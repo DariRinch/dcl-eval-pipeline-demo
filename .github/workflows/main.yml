@@ -17,7 +17,7 @@ jobs:
       - name: Install ruff
         run: pip install ruff
       - name: Run ruff
-        run: # ruff check . --exclude notebooks/
+        run: ruff check . --exclude notebooks/
 
   docker:
     runs-on: ubuntu-latest
