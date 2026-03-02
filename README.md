@@ -1,9 +1,10 @@
 # DCL Eval Pipeline — Demo
 
+> Intended audience: AI leads / architects in fintech & gov who need a concrete evaluation layer for agent behavior audit.
+
 [![CI](https://github.com/DariRinch/dcl-eval-pipeline-demo/actions/workflows/main.yml/badge.svg)](https://github.com/DariRinch/dcl-eval-pipeline-demo/actions/workflows/main.yml)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![DeepEval](https://img.shields.io/badge/eval-DeepEval-orange)](https://github.com/confident-ai/deepeval)
-[![Stars](https://img.shields.io/github/stars/DariRinch/dcl-eval-pipeline-demo?style=social)](https://github.com/DariRinch/dcl-eval-pipeline-demo)
 
 Lightweight evaluation pipeline for **monitoring, auditing** and **explaining** behavior of LLM agents in multi-agent systems.
 
@@ -11,55 +12,61 @@ Lightweight evaluation pipeline for **monitoring, auditing** and **explaining** 
 
 ## For whom
 
-For AI teams in fintech, government and enterprise building multi-agent systems 
-who need **deterministic audit**, full traceability and compliance with 
+For AI teams in fintech, government and enterprise building multi-agent systems
+who need **deterministic audit**, full traceability and compliance with
 EU AI Act / ФСТЭК requirements.
 
 ---
 
 ## Motivation
 
-In 2026, multi-agent LLM systems are deployed in fintech, government, 
+In 2026, multi-agent LLM systems are deployed in fintech, government,
 and enterprise — but their decisions remain a **black box**.
 
-This pipeline is a practical step toward **deterministic audit**, 
-observability, and explainability: anomaly detection in decision chains, 
+This pipeline is a practical step toward **deterministic audit**,
+observability, and explainability: anomaly detection in decision chains,
 prompt quality & consistency assessment, full traceability.
 
-Goal: align systems with EU AI Act, ISO standards, and high explainability 
-levels — enabling humans to truly trust and control autonomous agents.
-
-**Example:** detect when an agent silently ignores a KYC rule, 
-loops on a decision chain, or produces hallucinated reasoning 
+**Example:** detect when an agent silently ignores a KYC rule,
+loops on a decision chain, or produces hallucinated reasoning
 in a critical workflow.
 
 ---
 
 ## Key Features
 
-- **Prompt quality assessment** — clarity, completeness, ambiguity detection
-- **Response consistency** — contradiction detection across agent responses
-- **Anomaly detection** in decision chains — loops, hallucination in reasoning
-- **Structured agent logging** — JSON logs with action tracing and tool calls
-- **Extensible metrics** via DeepEval (G-Eval, custom LLM-as-a-judge)
-- **Interactive demo** in Jupyter — see the pipeline on sample logs
+* **Prompt quality assessment** — clarity, completeness, ambiguity detection
+* **Multi-agent consistency check** — two agents, same input, diverging outputs = flag
+* **Anomaly detection** in decision chains — loops, hallucination in reasoning
+* **REST API** via FastAPI — any external system can request an audit report in JSON
+* **Vendor lock-in avoidance** via LiteLLM — swap model in `config.yaml`, no code changes
+* **Structured audit logging** — JSON logs with action tracing and tool calls
+* **Containerized** — runs anywhere via Docker
+* **CI/CD** — automated lint + Docker build on every push
 
 ---
 
 ## Architecture
-```mermaid
-graph TD
-    A[Agent Logs JSON] --> B[Structured Parsing + Validation]
-    B --> C[Metrics Engine - DeepEval]
-    C --> D[Anomaly Detection and Scoring]
-    D --> E[Reports + Visualizations]
+```
+Agent Logs JSON
+      ↓
+Structured Parsing + Validation
+      ↓
+Metrics Engine (LiteLLM + custom metrics)
+      ↓
+Anomaly Detection + Multi-Agent Consistency
+      ↓
+REST API (FastAPI) / Audit Report JSON
 ```
 
 Core components:
-- [`eval/pipeline.py`](eval/pipeline.py) — evaluation orchestration
-- [`eval/metrics.py`](eval/metrics.py) — custom and built-in metrics
-- [`prompts/templates.py`](prompts/templates.py) — prompt templates for LLM evaluators
-- [`data/sample_logs.json`](data/sample_logs.json) — sample agent logs
+
+* `eval/pipeline.py` — evaluation orchestration
+* `eval/metrics.py` — custom metrics
+* `prompts/templates.py` — prompt templates for LLM evaluators
+* `api/main.py` — FastAPI endpoint `POST /evaluate`
+* `config.yaml` — model, thresholds, paths (swap model in one line)
+* `data/sample_logs.json` — sample agent logs
 
 ---
 
@@ -72,50 +79,61 @@ cd dcl-eval-pipeline-demo
 # 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Set up API key
+# 3. Set up environment
 cp .env.example .env
-# → edit .env and add your OPENAI_API_KEY=sk-...
+# → add HF_TOKEN=hf_your_token_here
 ```
 
 ## Quick Start
 ```bash
+# Run notebook demo
 jupyter notebook notebooks/demo.ipynb
+
+# Or run API
+uvicorn api.main:app --reload
+```
+
+## API Usage
+```bash
+curl -X POST http://localhost:8000/evaluate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "template": "decision_audit",
+    "kwargs": {"scenario": "Flag transaction of $47,000 from a new account"}
+  }'
+```
+
+---
+
+## Docker
+```bash
+docker build -t dcl-eval-pipeline .
+docker run -p 8888:8888 dcl-eval-pipeline
 ```
 
 ---
 
 ## Roadmap
 
-- [x] Core eval pipeline + metrics
-- [x] Sample logs + .env setup
-- [x] Jupyter demo notebook structure
-- [ ] LangGraph / CrewAI integration
-- [ ] Agent-specific metrics: goal achievement, loop/hallucination detection
-- [ ] Multi-LLM support via LiteLLM
-- [ ] Streamlit / Gradio dashboard
-- [ ] Export to Langfuse / Phoenix / OpenTelemetry
-- [ ] Golden datasets + regression tests
-- [ ] CLI for batch log evaluation
+* [x] Core eval pipeline + metrics
+* [x] Multi-agent consistency check
+* [x] FastAPI endpoint
+* [x] LiteLLM integration
+* [x] Docker + CI/CD
+* [ ] LangGraph / CrewAI integration
+* [ ] Streamlit / Gradio dashboard
+* [ ] Export to Langfuse / Phoenix / OpenTelemetry
+* [ ] Golden datasets + regression tests
 
 ---
 
 ## Status
 
-Active research project. Core architecture is under IP protection.  
+Active research project. Core architecture is under IP protection.
 This repository contains the public demo layer.
 
 ---
 
-## Related Concepts
-
-This work draws from:
-- [DeepEval](https://github.com/confident-ai/deepeval) — LLM evaluation framework
-- Agent observability patterns (Langfuse, Phoenix, OpenTelemetry)
-- AI Safety research on monitoring, alignment and explainability
-- EU AI Act requirements for transparent and auditable AI systems
-
----
-  
 ## Contact
 
 Issues welcome → [github.com/DariRinch](https://github.com/DariRinch)
