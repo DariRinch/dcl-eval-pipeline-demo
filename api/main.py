@@ -7,6 +7,16 @@ import litellm
 import sys
 import os
 
+# Phoenix tracing for OpenAI calls
+import phoenix as px
+from phoenix.trace.openai import OpenAIInstrumentor
+
+# Если мы в докере, коннектимся к сервису phoenix
+collector_endpoint = os.getenv("PHOENIX_COLLECTOR_ENDPOINT", "http://localhost:4317")
+
+# Запускаем инструмент для автоматического логирования всех вызовов OpenAI
+OpenAIInstrumentor().instrument(endpoint=collector_endpoint)
+
 sys.path.insert(0, os.path.abspath('..'))
 
 from eval.metrics import score_consistency, score_length, score_anomaly

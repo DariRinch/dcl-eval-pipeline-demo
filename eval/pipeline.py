@@ -1,7 +1,17 @@
+import os
 import json
 import openai
 from datetime import datetime
 from eval.metrics import score_consistency, score_length, score_anomaly
+
+# Initialize Phoenix tracing for observability
+# PHOENIX_COLLECTOR_ENDPOINT is provided via docker-compose
+collector_endpoint = os.getenv("PHOENIX_COLLECTOR_ENDPOINT", "http://localhost:4317")
+
+# Instrument OpenAI calls to automatically capture traces
+# This allows monitoring of prompt performance and agent reasoning chains
+from phoenix.trace.openai import OpenAIInstrumentor
+OpenAIInstrumentor().instrument(endpoint=collector_endpoint)
 
 def run_eval(prompt: str, expected_keywords: list, forbidden_patterns: list = None) -> dict:
     """Run evaluation pipeline on a single prompt."""
