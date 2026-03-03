@@ -6,6 +6,8 @@
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
 [![DeepEval](https://img.shields.io/badge/eval-DeepEval-orange)](https://github.com/confident-ai/deepeval)
 
+[![Run in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/DariRinch/dcl-eval-pipeline-demo/blob/main/notebooks/demo.ipynb)
+
 Lightweight evaluation pipeline for **monitoring, auditing** and **explaining** behavior of LLM agents in multi-agent systems.
 
 ---
